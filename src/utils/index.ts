@@ -1,4 +1,7 @@
-export const drawCircle = (radius) => {
+import robot from 'robotjs';
+
+
+export const drawCircle = (radius: Buffer) => {
     const r = +radius.toString().split(' ')[1]
 
     const mousePos = robot.getMousePos();
@@ -13,7 +16,7 @@ export const drawCircle = (radius) => {
     }
 };
 
-export const drawSquare = (width) => {
+export const drawSquare = (width: Buffer) => {
 
     const w = +width.toString().split(' ')[1];
 
