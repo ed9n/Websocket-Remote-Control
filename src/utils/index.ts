@@ -1,8 +1,8 @@
 import robot from 'robotjs';
 
 
-export const drawCircle = (radius: Buffer) => {
-    const r = +radius.toString().split(' ')[1]
+export const drawCircle = (radius: string) => {
+    const r = +radius.split(' ')[1]
 
     const mousePos = robot.getMousePos();
     robot.setMouseDelay(1)
@@ -16,9 +16,9 @@ export const drawCircle = (radius: Buffer) => {
     }
 };
 
-export const drawSquare = (width: Buffer) => {
+export const drawSquare = (width: string) => {
 
-    const w = +width.toString().split(' ')[1];
+    const w = +width.split(' ')[1];
 
     const mousePos = robot.getMousePos();
 
@@ -28,5 +28,22 @@ export const drawSquare = (width: Buffer) => {
     robot.moveMouseSmooth(x + w, y, 20);
     robot.moveMouseSmooth(x + w, y + w, 20);
     robot.moveMouseSmooth(x, y + w, 20);
+    robot.moveMouseSmooth(x, y, 20);
+}
+
+export const drawRectangular = (width: string) => {
+
+    const w = +width.split(' ')[1];
+    const length = +width.split(' ')[2];
+
+
+    const mousePos = robot.getMousePos();
+
+    const x = mousePos.x;
+    const y = mousePos.y;
+
+    robot.moveMouseSmooth(x + w, y, 20);
+    robot.moveMouseSmooth(x + w, y + length, 20);
+    robot.moveMouseSmooth(x, y + length, 20);
     robot.moveMouseSmooth(x, y, 20);
 }
