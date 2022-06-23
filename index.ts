@@ -1,8 +1,7 @@
 import Jimp from 'jimp';
 import { httpServer } from './src/http_server/index';
-import robot from 'robotjs';
-import { WebSocketServer } from 'ws';
-import { drawCircle, drawRectangular, drawSquare } from './src/utils';
+import { createWebSocketStream, WebSocketServer } from 'ws';
+import { validateArgs } from './validateArgs';
 
 const HTTP_PORT = 3000;
 
@@ -11,20 +10,18 @@ httpServer.listen(HTTP_PORT);
 
 const wss = new WebSocketServer({ port: 8080 });
 
-
 wss.on('connection', ws => {
-    console.log('Connection accepted');
-    ws.on('message', (data) => {
-        const value = data.toString();
 
-        // drawCircle(value);
-        // drawSquare(value);
-        // drawRectangular(value);
-    })
+    const duplex = createWebSocketStream(ws, { encoding: 'utf8' });
+
+    duplex.on('data', (chunk) => {
+        validateArgs(chunk, ws);
+    });
+
+    console.log('Connection accepted');
 })
 
-
 wss.on('close', () => {
-    console.log('User is exit')
+    console.log('bb');
 });
 
