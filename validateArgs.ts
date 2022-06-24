@@ -32,23 +32,23 @@ export const validateArgs = async (data: RawData, ws: WebSocket) => {
                 break;
 
             case 'mouse_left':
-                moveMouseLeft(data);
                 writeStream(ws, arg);
+                moveMouseLeft(data);
                 break;
 
             case 'mouse_right':
-                moveMouseRight(data);
                 writeStream(ws, arg);
+                moveMouseRight(data);
                 break;
 
             case 'mouse_down':
-                moveMouseDown(data);
                 writeStream(ws, arg);
+                moveMouseDown(data);
                 break;
 
             case 'mouse_up':
-                moveMouseUp(data);
                 writeStream(ws, arg);
+                moveMouseUp(data);
                 break;
 
             default:
