@@ -3,6 +3,7 @@ import { getMousePos } from './mousePos';
 import { moveMouseDown, moveMouseLeft, moveMouseRight, moveMouseUp } from './moveMouse';
 import { writeStream } from './streams';
 import { drawCircle, drawRectangular, drawSquare } from './draw';
+import { jimp } from './jimp';
 
 
 export const validateArgs = async (data: RawData, ws: WebSocket) => {
@@ -49,6 +50,12 @@ export const validateArgs = async (data: RawData, ws: WebSocket) => {
             case 'mouse_up':
                 writeStream(ws, arg);
                 moveMouseUp(data);
+                break;
+
+            case 'prnt_scrn':
+                jimp().then((value) => {
+                    writeStream(ws, value);
+                });
                 break;
 
             default:
