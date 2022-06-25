@@ -5,6 +5,7 @@ import { createWebSocketStream, WebSocketServer } from 'ws';
 import { validateArgs } from './validateArgs';
 import { writeStream } from './streams';
 import { jimp } from './jimp';
+import { putInfoinConsole } from './logs';
 
 const HTTP_PORT = 3000;
 
@@ -18,21 +19,10 @@ wss.on('connection', ws => {
     const duplex = createWebSocketStream(ws, { encoding: 'utf8' });
 
     duplex.on('data', (chunk) => {
-        // validateArgs(chunk, ws);
-        console.log(chunk)
-        if (chunk === 'prnt_scrn') {
-            // jimp();
-            jimp().then((value) => {
-                // ws.send(value)
-                writeStream(ws, value)
 
+        validateArgs(chunk, ws);
+        putInfoinConsole(chunk);
 
-                // console.log(value)
-            })
-
-
-
-        }
     });
 
     console.log('Connection accepted');
