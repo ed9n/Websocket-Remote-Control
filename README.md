@@ -12,12 +12,6 @@
 
 * App served @ `http://localhost:8080` with nodemon
 
-**Production**
-
-`npm run start`
-
-* App served @ `http://localhost:8080` without nodemon
-
 ---
 
 **All commands**
